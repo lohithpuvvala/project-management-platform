@@ -7,6 +7,7 @@ import com.github.lohithpuvvala.projectmanagement.backend.user.entity.Role;
 import com.github.lohithpuvvala.projectmanagement.backend.user.entity.User;
 import com.github.lohithpuvvala.projectmanagement.backend.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserResponse register(RegisterRequest register) {
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService {
                 .firstName(register.getFirstName())
                 .lastName(register.getLastName())
                 .email(register.getEmail())
-                .password(register.getPassword()) // Temporary, We'll hash it later
+                .password(passwordEncoder.encode(register.getPassword()))
                 .role(Role.USER)
                 .build();
 
