@@ -1,35 +1,17 @@
-server:
-  port: 8080
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/project_management
     username: postgres
     password: postgres
 
-    jpa:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+    open-in-view: false
+
+    properties:
       hibernate:
-        ddl-auto: none
-
-      show-sql: true
-
-      properties:
-        hibernate:
-          format_sql: true
-  port: 8080
-
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/project_management
-    username: postgres
-    password: postgres
-
-    jpa:
-      hibernate:
-        ddl-auto: none
-
-      show-sql: true
-
-      properties:
-        hibernate:
-          format_sql: true
+        format_sql: true
