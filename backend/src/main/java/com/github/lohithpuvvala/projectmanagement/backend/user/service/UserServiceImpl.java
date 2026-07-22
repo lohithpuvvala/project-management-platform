@@ -1,5 +1,6 @@
 package com.github.lohithpuvvala.projectmanagement.backend.user.service;
 
+import com.github.lohithpuvvala.projectmanagement.backend.common.exception.EmailAlreadyExistsException;
 import com.github.lohithpuvvala.projectmanagement.backend.user.dto.RegisterRequest;
 import com.github.lohithpuvvala.projectmanagement.backend.user.dto.UserResponse;
 import com.github.lohithpuvvala.projectmanagement.backend.user.entity.Role;
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse register(RegisterRequest register) {
         if(userRepository.existsByEmail(register.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new EmailAlreadyExistsException("Email already exists");
         }
 
         User user = User.builder()
