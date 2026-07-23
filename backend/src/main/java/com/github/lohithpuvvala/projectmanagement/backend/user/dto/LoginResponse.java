@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class LoginResponse {
-    private String message;
+    private String accessToken;
+    private String tokenType;
 }
