@@ -1,5 +1,6 @@
 package com.github.lohithpuvvala.projectmanagement.backend.auth.service;
 
+import com.github.lohithpuvvala.projectmanagement.backend.security.jwt.JwtService;
 import com.github.lohithpuvvala.projectmanagement.backend.user.dto.LoginRequest;
 import com.github.lohithpuvvala.projectmanagement.backend.user.dto.LoginResponse;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
     @Override
     public LoginResponse login(LoginRequest request) {
@@ -22,6 +24,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 )
         );
 
-        return new LoginResponse("Login Successful");
+        String accessToken = jwtService.generateToken(request.getEmail());
+
+        return new LoginResponse(accessToken, "Bearer");
     }
 }

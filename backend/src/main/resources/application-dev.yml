@@ -15,3 +15,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: my-super-secret-key-for-project-management-platform-2026
+  expiration: 3600000 #60m * 60s * 10000ms - 1 hour
