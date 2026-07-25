@@ -1,4 +1,4 @@
-package com.github.lohithpuvvala.projectmanagement.backend.organization.dto;
+package com.github.lohithpuvvala.projectmanagement.backend.organization.dto.response;
 
 import java.util.UUID;
 
