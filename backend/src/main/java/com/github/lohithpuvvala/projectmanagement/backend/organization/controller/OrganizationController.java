@@ -6,7 +6,7 @@ import com.github.lohithpuvvala.projectmanagement.backend.organization.dto.reque
 import com.github.lohithpuvvala.projectmanagement.backend.organization.dto.response.OrganizationCreateResponse;
 import com.github.lohithpuvvala.projectmanagement.backend.organization.dto.response.OrganizationDetailResponse;
 import com.github.lohithpuvvala.projectmanagement.backend.organization.dto.response.OrganizationSummaryResponse;
-import com.github.lohithpuvvala.projectmanagement.backend.organization.service.OrganizationService;
+import com.github.lohithpuvvala.projectmanagement.backend.organization.service.impl.OrganizationServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrganizationController {
 
-    private final OrganizationService organizationService;
+    private final OrganizationServiceImpl organizationService;
 
     @PostMapping
     public ResponseEntity<OrganizationCreateResponse> createOrganization(
