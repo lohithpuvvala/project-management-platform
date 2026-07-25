@@ -1,5 +1,6 @@
 package com.github.lohithpuvvala.projectmanagement.backend.user.entity;
 
+import com.github.lohithpuvvala.projectmanagement.backend.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,12 +14,7 @@ import java.util.UUID;
 @Builder
 @Setter
 @Getter
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
+public class User extends BaseEntity {
     @Column(nullable = false, length = 50)
     private String firstName;
 
@@ -38,17 +34,4 @@ public class User {
     @Builder.Default
     @Column(nullable = false)
     private Boolean active = true;
-
-    @Builder.Default
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @Builder.Default
-    @Column(nullable = false)
-    private LocalDateTime updatedAt = LocalDateTime.now();
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 }
