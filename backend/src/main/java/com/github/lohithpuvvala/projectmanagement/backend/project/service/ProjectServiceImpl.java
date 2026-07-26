@@ -1,5 +1,6 @@
 package com.github.lohithpuvvala.projectmanagement.backend.project.service;
 
+import com.github.lohithpuvvala.projectmanagement.backend.board.service.BoardService;
 import com.github.lohithpuvvala.projectmanagement.backend.common.exception.ResourceAlreadyExistsException;
 import com.github.lohithpuvvala.projectmanagement.backend.common.exception.ResourceNotFoundException;
 import com.github.lohithpuvvala.projectmanagement.backend.common.response.PagedResponse;
@@ -32,6 +33,7 @@ public class ProjectServiceImpl implements ProjectService {
     private final SecurityUtils securityUtils;
     private final OrganizationRepository organizationRepository;
     private final ProjectMapper projectMapper;
+    private final BoardService boardService;
 
     @Override
     @Transactional
@@ -54,6 +56,8 @@ public class ProjectServiceImpl implements ProjectService {
                 .build();
 
         Project savedProject = projectRepository.save(project);
+
+        boardService.createDefaultBoards(project);
 
         return projectMapper.toCreateResponse(savedProject);
     }

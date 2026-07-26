@@ -8,15 +8,33 @@ import com.github.lohithpuvvala.projectmanagement.backend.project.dto.response.P
 import com.github.lohithpuvvala.projectmanagement.backend.project.dto.response.ProjectSummaryResponse;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface ProjectService {
+
     ProjectCreateResponse createProject(
             UUID organizationId,
-            CreateProjectRequest request);
-    PagedResponse<ProjectSummaryResponse> getProjects(UUID organizationId,Pageable pageable);
-    ProjectDetailResponse getProjectById(UUID organizationId, UUID projectId);
-    ProjectDetailResponse updateProject(UUID organizationId, UUID projectId, UpdateProjectRequest request);
-    void deleteProjectById(UUID organizationId, UUID projectId);
+            CreateProjectRequest request
+    );
+
+    PagedResponse<ProjectSummaryResponse> getProjects(
+            UUID organizationId,
+            Pageable pageable
+    );
+
+    ProjectDetailResponse getProjectById(
+            UUID organizationId,
+            UUID projectId
+    );
+
+    ProjectDetailResponse updateProject(
+            UUID organizationId,
+            UUID projectId,
+            UpdateProjectRequest request
+    );
+
+    void deleteProjectById(
+            UUID organizationId,
+            UUID projectId
+    );
 }
